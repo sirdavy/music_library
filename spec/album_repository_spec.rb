@@ -23,6 +23,25 @@ RSpec.describe AlbumRepository do
     expect(albums[1].release_year).to eq "1978"
     expect(albums[1].artist_id).to eq "1"
   end
+
+  it "returns single album - Thriller" do
+    repo = AlbumRepository.new
+    album = repo.find(1)
+    expect(album.id).to eq "1"
+    expect(album.title).to eq 'Thriller'
+    expect(album.release_year).to eq '1981'
+    expect(album.artist_id).to eq "1"
+  end
+  
+  it "returns single album - Off The Wall" do
+    repo = AlbumRepository.new
+    album = repo.find(2)
+    expect(album.id).to eq '2'
+    expect(album.title).to eq 'Off The Wall'
+    expect(album.release_year).to eq '1978'
+    expect(album.artist_id).to eq '1'
+  end
+
 end
 
 # albums[1].id # =>  2
