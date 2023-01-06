@@ -5,12 +5,13 @@ DatabaseConnection.connect('music_library')
 
 album_repository = AlbumRepository.new
 
-test = album_repository.all.sort_by { |hash| hash.id.to_i }
+album = album_repository.find(3)
 
-test.each do |album|
+# test = album_repository.all.sort_by { |hash| hash.id.to_i } #sorts returned array by descending id
+# test.each do |album|
   puts "#{album.id}".ljust(3) + "- #{album.title}".ljust(25) + "#{album.artist_id}".ljust(5)
 
-end
+# end
 
 
 
