@@ -14,33 +14,51 @@ RSpec.describe AlbumRepository do
     repo = AlbumRepository.new
     albums = repo.all
     expect(albums.length).to eq(2)
-    expect(albums[0].id).to eq "1"
+    expect(albums[0].id).to eq 1
     expect(albums[0].title).to eq "Thriller"
-    expect(albums[0].release_year).to eq "1981"
-    expect(albums[0].artist_id).to eq "1"
-    expect(albums[1].id).to eq "2"
+    expect(albums[0].release_year).to eq 1981
+    expect(albums[0].artist_id).to eq 1
+    expect(albums[1].id).to eq 2
     expect(albums[1].title).to eq "Off The Wall"
-    expect(albums[1].release_year).to eq "1978"
-    expect(albums[1].artist_id).to eq "1"
+    expect(albums[1].release_year).to eq 1978
+    expect(albums[1].artist_id).to eq 1
   end
 
   it "returns single album - Thriller" do
     repo = AlbumRepository.new
     album = repo.find(1)
-    expect(album.id).to eq "1"
+    expect(album.id).to eq 1
     expect(album.title).to eq 'Thriller'
-    expect(album.release_year).to eq '1981'
-    expect(album.artist_id).to eq "1"
+    expect(album.release_year).to eq 1981
+    expect(album.artist_id).to eq 1
   end
   
   it "returns single album - Off The Wall" do
     repo = AlbumRepository.new
     album = repo.find(2)
-    expect(album.id).to eq '2'
+    expect(album.id).to eq 2
     expect(album.title).to eq 'Off The Wall'
-    expect(album.release_year).to eq '1978'
-    expect(album.artist_id).to eq '1'
+    expect(album.release_year).to eq 1978
+    expect(album.artist_id).to eq 1
   end
+
+  it "creates an new entry" do
+    repo = AlbumRepository.new
+    album = Album.new
+    album.title = 'Trompe le Monde'
+    album.release_year = 1991
+    album.artist_id = 2
+    repo.create(album)
+    all_albums = repo.all
+    expect(all_albums).to include(
+      have_attributes(
+        title: album.title,
+        release_year: 1991,
+        artist_id: 2
+      )
+    )
+  end
+
 
 end
 
